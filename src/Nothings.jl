@@ -132,4 +132,29 @@ else
         end    
     end
 
+
+    # to avoid ambiguity warnings
+    (^)(::Nothing, ::Integer) = nothing
+
+    # Bit operators
+    (&)(::Nothing, ::Nothing) = nothing
+    (&)(a::Nothing, b::Bool) = b
+    (&)(b::Bool, a::Nothing) = b
+    (&)(::Nothing, b::Integer) = b
+    (&)(b::Integer, ::Nothing) = b
+    (|)(::Nothing, ::Nothing) = nothing
+    (|)(a::Nothing, b::Bool) = b
+    (|)(b::Bool, a::Nothing) = b
+    (|)(::Nothing, b::Integer) = b
+    (|)(b::Integer, ::Nothing) = b
+    xor(::Nothing, ::Nothing) = nothing
+    xor(a::Nothing, b::Bool) = b
+    xor(b::Bool, a::Nothing) = b
+    xor(a::Nothing, b::Integer) = b
+    xor(b::Integer, a::Nothing) = b
+
+    # String functions
+    *(d::Nothing, x::AbstractString) = x
+    *(d::AbstractString, x::Nothing) = x
+
 end # module Nothings
